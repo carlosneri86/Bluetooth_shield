@@ -1,0 +1,97 @@
+/*HEADER******************************************************************************************
+*
+* Comments:
+*
+*
+**END********************************************************************************************/
+#ifndef LPTIMER_H_
+#define LPTIMER_H_
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      Includes Section                                         
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "BoardConfig.h"
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                  Defines & Macros Section                                     
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      Typedef Section                                          
+///////////////////////////////////////////////////////////////////////////////////////////////////
+typedef enum
+{
+	LPTIMER_PRESCALER_BY_2 = 0,
+	LPTIMER_PRESCALER_BY_4,
+	LPTIMER_PRESCALER_BY_8,
+	LPTIMER_PRESCALER_BY_16,
+	LPTIMER_PRESCALER_BY_32,
+	LPTIMER_PRESCALER_BY_64,
+	LPTIMER_PRESCALER_BY_128,
+	LPTIMER_PRESCALER_BY_256,
+	LPTIMER_PRESCALER_BY_512,
+	LPTIMER_PRESCALER_BY_1024,
+	LPTIMER_PRESCALER_BY_2048,
+	LPTIMER_PRESCALER_BY_4096,
+	LPTIMER_PRESCALER_BY_8192,
+	LPTIMER_PRESCALER_BY_16384,
+	LPTIMER_PRESCALER_BY_32768,
+	LPTIMER_PRESCALER_BY_65536
+}eLPTimerPresacaler;
+
+typedef enum
+{
+	LPTIMER_PRESCALER_CLOCK_0 = 0,
+	LPTIMER_PRESCALER_CLOCK_1,
+	LPTIMER_PRESCALER_CLOCK_2,
+	LPTIMER_PRESCALER_CLOCK_3
+}eLPTimerClockSelect;
+
+typedef enum
+{
+	LPTIMER_COUNTER_MATCH_STATUS = 0
+}eLPTimerStatus;
+
+typedef enum
+{
+	LPTIMER_COUNTER_MATCH_MASK_STATUS = (1 << LPTIMER_COUNTER_MATCH_STATUS)
+}eLPTimerStatusMasks;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                Function-like Macros Section                                   
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#define LPTIMER_CHECK_STATUS(status)	(LPTimer_gbStatus & status)
+
+#define LPTIMER_CLEAR_STATUS(status)	(LPTimer_gbStatus &= ~status)
+
+#define LPTIMER_SET_STATUS(status)	(LPTimer_gbStatus |= status)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                  Extern Constants Section                                     
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                  Extern Variables Section                                     
+///////////////////////////////////////////////////////////////////////////////////////////////////
+extern volatile uint8_t LPTimer_gbStatus;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                Function Prototypes Section                                    
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+extern "C" {
+#endif // __cplusplus
+
+void LPTimer_Init(uint8_t bPrescaler,uint8_t bClockSource, uint32_t dwCompareValue);
+
+void LPTimer_EnableTimer (void);
+
+#if defined(__cplusplus)
+}
+#endif // __cplusplus
+
+
+#endif /* LPTIMER_H_ */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// EOF
+///////////////////////////////////////////////////////////////////////////////////////////////////
