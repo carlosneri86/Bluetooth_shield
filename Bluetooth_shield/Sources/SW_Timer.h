@@ -45,7 +45,7 @@ extern "C" {
 
 void SWTimer_vfnInit(void);
 
-uint8_t SWTimer_AllocateChannel(uint32_t dwCounter, void (* vfnpTimerCallback)(void));
+uint8_t SWTimer_vfnAllocateChannel(uint32_t dwCounter, void (* vfnpTimerCallback)(void));
 
 void SWTimer_vfnEnableTimer(uint8_t bTimerToEnable);
 

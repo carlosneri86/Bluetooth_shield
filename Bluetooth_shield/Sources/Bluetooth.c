@@ -262,7 +262,7 @@ void Bluetooth_vfnInitModule(void)
 	
 	Bluetooth_tStateMachine.bCurrentState = BLUETOOTH_INIT_STATE;
 	
-	Bluetooth_gbSWTimer =  SWTimer_AllocateChannel(BLUETOOTH_TIMER, Bluetooth_vfnSWTimerCallback);
+	Bluetooth_gbSWTimer =  SWTimer_vfnAllocateChannel(BLUETOOTH_TIMER, Bluetooth_vfnSWTimerCallback);
 	
 }
 

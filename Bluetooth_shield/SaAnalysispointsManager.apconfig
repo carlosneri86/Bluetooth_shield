@@ -1,6 +1,6 @@
 <Analysispoints>
 	<Name>AnalysispointsManager</Name>
-	<ProjectPath>C:/Users/b22385/Documents/Codes/CW Workspaces/MyStuff_CW/Bluetooth_shield/SaAnalysispointsManager.apconfig</ProjectPath>
+	<ProjectPath>C:/Users/b22385/git/Bluetooth_shield/Bluetooth_shield/SaAnalysispointsManager.apconfig</ProjectPath>
 	<MaxNumberOfCores>1</MaxNumberOfCores>
 	<Comments>Analysispoints Manager</Comments>
 	<IgnoreAll>false</IgnoreAll>

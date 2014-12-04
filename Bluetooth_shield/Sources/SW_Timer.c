@@ -78,7 +78,7 @@ void SWTimer_vfnInit(void)
 	LPTimer_EnableTimer();
 }
 
-uint8_t SWTimer_AllocateChannel(uint32_t dwCounter, void (* vfnpTimerCallback)(void))
+uint8_t SWTimer_vfnAllocateChannel(uint32_t dwCounter, void (* vfnpTimerCallback)(void))
 {
 	uint8_t bStatus = SWTIMER_ERROR;
 	
