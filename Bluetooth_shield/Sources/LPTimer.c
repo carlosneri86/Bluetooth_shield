@@ -41,7 +41,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Global Variables Section                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+//! Holds the interrupt events
 volatile uint8_t LPTimer_gbStatus = 0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Static Variables Section                   
@@ -55,7 +55,7 @@ volatile uint8_t LPTimer_gbStatus = 0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void LPTimer_Init(uint8_t bPrescaler,uint8_t bClockSource, uint32_t dwCompareValue)
 {
-	
+	/* Enable the clock gate */
 	SIM_SCGC5 |= SIM_SCGC5_LPTMR_MASK;
 	
 	LPTMR0_CSR &= ~LPTMR_CSR_TEN_MASK;
@@ -72,8 +72,9 @@ void LPTimer_Init(uint8_t bPrescaler,uint8_t bClockSource, uint32_t dwCompareVal
 	
 	LPTimer_gbStatus = 0;
 	
+	/* Enable the timer interrupt*/
 	LPTMR0_CSR |= LPTMR_CSR_TCF_MASK;
-	
+	/* Enable the interrupt */ 
 	NVIC_vfnEnableIRQ(NVIC_LPTIMER);
 	
 	
@@ -81,11 +82,13 @@ void LPTimer_Init(uint8_t bPrescaler,uint8_t bClockSource, uint32_t dwCompareVal
 
 void LPTimer_EnableTimer (void)
 {
+	/* Start the timer */
 	LPTMR0_CSR |= LPTMR_CSR_TEN_MASK;
 }
 
 void LPTimer_IRQHandler (void)
 {
+	/* Clear the timer flag and set the proper event */
 	LPTMR0_CSR |= LPTMR_CSR_TCF_MASK;
 	
 	LPTIMER_SET_STATUS(LPTIMER_COUNTER_MATCH_MASK_STATUS);

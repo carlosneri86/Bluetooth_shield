@@ -32,7 +32,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Global Constants Section                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+//! Corresponding clock gate masks for all the GPIO Ports modules.
 const uint32_t GPIO_gadwPortGPIOClockGateMask[GPIO_PORT_MAX] =
 {
 		SIM_SCGC5_PORTA_MASK,
@@ -45,7 +45,7 @@ const uint32_t GPIO_gadwPortGPIOClockGateMask[GPIO_PORT_MAX] =
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Static Constants Section                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+//! Registers address of first pin of each port.
 static volatile uint32_t * const GPIO_gadwPortGPIO[GPIO_PORT_MAX] =
 {
 		&PORTA_PCR0,
@@ -69,14 +69,7 @@ static volatile uint32_t * const GPIO_gadwPortGPIO[GPIO_PORT_MAX] =
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Functions Section                       
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/*!
-      \fn  GPIO_vfnPinMux
-      \param ePort: Port to be used. Values available on GPIO.h
-      \param bPin: The pin to be configured
-      \param bMuxSelection: Select the MUX option. Values available on GPIO.h
-      \brief  Initializes the respective pin to the desired mux selection
-      \return
-*/
+
 void GPIO_vfnPinMux(uint8_t ePort, uint8_t bPin, uint8_t bMuxSelection)
 {
 	uint32_t * pdwPortRegister;
@@ -87,25 +80,9 @@ void GPIO_vfnPinMux(uint8_t ePort, uint8_t bPin, uint8_t bMuxSelection)
 		SIM_SCGC5 |= GPIO_gadwPortGPIOClockGateMask[ePort];
 		
 		/* take the PORTx_PCR0 address */
+		/* the bPin is used as offset to access the proper address*/
 		pdwPortRegister = (uint32_t*)GPIO_gadwPortGPIO[ePort];
 		pdwPortRegister[bPin] = PORT_PCR_MUX(bMuxSelection);
-		/* TODO: add a FLAGS parameter for pull up/down and open drain */
-		
-	}
-}
-
-
-void GPIO_vfnPinSettings(uint8_t ePort, uint8_t bPin, uint8_t bPinSettings)
-{
-	uint32_t * pdwPortRegister;
-	/* confirm there port is available */
-	if(ePort < GPIO_PORT_MAX)
-	{
-		/*This function assumes the pin is initialized*/		
-		/* take the PORTx_PCR0 address */
-		pdwPortRegister = (uint32_t*)GPIO_gadwPortGPIO[ePort];
-		pdwPortRegister[bPin] = bPinSettings;
-		/* TODO: add a FLAGS parameter for pull up/down and open drain */
 		
 	}
 }

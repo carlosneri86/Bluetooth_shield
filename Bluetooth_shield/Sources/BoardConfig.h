@@ -16,9 +16,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                  Defines & Macros Section                                     
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-//#define TARGET_CLK	(8000000)
+//! Sets the MCU target clock.
 #define TARGET_CLK	(48000000)
-
+//! Board reference clock frequency.
 #define OSCILLATOR	(8000000)
 
 #if TARGET_CLK == (8000000)
@@ -26,9 +26,9 @@
 
 #define BUS_CLOCK	(8000000UL)
 #elif TARGET_CLK == (48000000)
-
+//! Expected CPU clock frequency.
 #define CPU_CLOCK	(48000000UL)
-
+//! Expected Bus clock frequency.
 #define BUS_CLOCK	(24000000UL)
 
 #endif
@@ -56,6 +56,13 @@
 extern "C" {
 #endif // __cplusplus
 
+/*!
+ * @brief Configures the MCU clock and peripheral pins.
+ * 
+ * 
+ * @note    This function must be modified if any new peripherals are added
+ * 
+*/
 void BoardConfig_vfnInit(void);
 
 #if defined(__cplusplus)

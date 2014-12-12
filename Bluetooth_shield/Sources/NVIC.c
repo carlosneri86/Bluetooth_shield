@@ -13,7 +13,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Defines & Macros Section                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+//! Last interrupt source on the MCU
 #define NVIC_MAX_IRQ	(INT_PORTD)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,12 +54,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Functions Section                       
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/*!
-      \fn  NVIC_vfnEnableIRQ
-      \param dwIRQtoEnable: IRQ to enable. Extracted from the enum on NVIC.h 
-      \brief  Enables the NVIC bit for IRQn
-      \return
-*/
+
 void NVIC_vfnEnableIRQ(uint32_t dwIRQtoEnable)
 {
 	uint32_t dwNVICBit;
@@ -72,12 +67,7 @@ void NVIC_vfnEnableIRQ(uint32_t dwIRQtoEnable)
 
 	}
 }
-/*!
-      \fn  NVIC_vfnDisableIRQ
-      \param dwIRQtoDisable: IRQ number to disable. Extracted from the enum on NVIC.h
-      \brief  Disables the NVIC bit for IRQn
-      \return
-*/
+
 void NVIC_vfnDisableIRQ(uint32_t dwIRQtoDisable)
 {
 	uint32_t dwNVICBit;

@@ -20,6 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Typedef Section                                          
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//! Ports available on the MCU
 typedef enum
 {
 	GPIO_PORT_A = 0,
@@ -29,7 +30,7 @@ typedef enum
 	GPIO_PORT_E,
 	GPIO_PORT_MAX
 }eGPIOPorts;
-
+//! Pin mux options
 typedef enum
 {
 	GPIO_MUX_ALT_0 = 0,
@@ -42,15 +43,6 @@ typedef enum
 	GPIO_MUX_ALT_7,
 	GPIO_MUX_MAX
 }eGPIOMuxOptions;
-
-typedef enum
-{
-	GPIO_SETTINGS_PULL_SELECT = 1,
-	GPIO_SETTINGS_PULL_ENABLE = 2,
-	GPIO_SETTINGS_SLOW_SLEW = 4,
-	GPIO_SETTINGS_FILTER_ENABLED = 16,
-	GPIO_SETTINGS_HIGH_DRIVE_STRENGTH = 64,
-}eGPIOSettingsOptions;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                Function-like Macros Section                                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +63,18 @@ typedef enum
 extern "C" {
 #endif // __cplusplus
 
+/*!
+ *	@brief	Configures the pin mux
+ * 
+ *	@param	ePort				[in]	The port to which the pin belongs. Based on eGPIOPorts enumeration
+ * 
+ *	@param	bPin				[in]	The actual pin to configure
+ *	
+ * 	@param	bMuxSelection		[in]	The mux selection. Based on eGPIOMuxOptions enumeration
+ * 	
+ * 	@return	void								
+ *	
+*/
 void GPIO_vfnPinMux(uint8_t ePort, uint8_t bPin, uint8_t bMuxSelection);
 
 #if defined(__cplusplus)

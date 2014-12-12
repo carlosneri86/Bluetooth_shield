@@ -57,6 +57,7 @@ uint8_t bfnStringCompare(const uint8_t * bpStringBase, const uint8_t * bpStringT
 	
 	while(wAmountOfCharacters--)
 	{
+		/* Compare each character, early exit just after a character mismatch */
 		if(bpStringBase[bStringOffset] != bpStringToCompare[bStringOffset])
 		{
 			bStatus = STRING_ERROR;

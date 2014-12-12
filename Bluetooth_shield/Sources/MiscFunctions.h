@@ -16,8 +16,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                  Defines & Macros Section                                     
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//! String match status
 #define STRING_OK		(1)
-
+//! String mismatch status
 #define STRING_ERROR	(0)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Typedef Section                                          
@@ -43,7 +44,20 @@
 extern "C" {
 #endif // __cplusplus
 
-
+/*!
+ *	@brief	Compares the amount of characters requested between string base and string to compare
+ * 
+ *	@param	bpStringBase		[in]	String to be used as reference
+ *	
+ *	@param  bpStringToCompare	[in]	String to be compared with the reference
+ *	
+ *	@param	wAmountOfCharacters	[in]	Amount of characters to be compared
+ * 	
+ * 	@return	uint8_t	Status of the comparison
+ * 	@retval	STRING_OK		Strings matched
+ * 	@retval	STRING_ERROR	Strings not matched								
+ *	
+*/
 uint8_t bfnStringCompare(const uint8_t * bpStringBase, const uint8_t * bpStringToCompare, uint16_t wAmountOfCharacters);
 
 #if defined(__cplusplus)

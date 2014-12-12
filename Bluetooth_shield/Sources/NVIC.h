@@ -21,6 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Typedef Section                                          
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//! Available interrupt sources on the MCU
 enum eNVICIrqSources
 {
 	NVIC_DMA0 = 0,              
@@ -75,8 +76,23 @@ enum eNVICIrqSources
 #if defined(__cplusplus)
 extern "C" {
 #endif // __cplusplus
-
+/*!
+ *	@brief	Enables the specific interrupt on the NVIC
+ * 
+ *	@param	dwIRQtoEnable		[in]	Interrupt source to enable
+ * 	
+ * 	@return	void								
+ *	
+*/
 void NVIC_vfnEnableIRQ(uint32_t dwIRQtoEnable);
+/*!
+ *	@brief	Disables the specific interrupt on the NVIC
+ * 
+ *	@param	dwIRQtoDisable		[in]	Interrupt source to Disable
+ * 	
+ * 	@return	void								
+ *	
+*/
 void NVIC_vfnDisableIRQ(uint32_t dwIRQtoDisable);
 
 #if defined(__cplusplus)

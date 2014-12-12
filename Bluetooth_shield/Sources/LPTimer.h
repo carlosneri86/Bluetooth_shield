@@ -21,6 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Typedef Section                                          
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//! HW Prescaler values
 typedef enum
 {
 	LPTIMER_PRESCALER_BY_2 = 0,
@@ -40,7 +41,7 @@ typedef enum
 	LPTIMER_PRESCALER_BY_32768,
 	LPTIMER_PRESCALER_BY_65536
 }eLPTimerPresacaler;
-
+//! HW clock selections
 typedef enum
 {
 	LPTIMER_PRESCALER_CLOCK_0 = 0,
@@ -48,12 +49,12 @@ typedef enum
 	LPTIMER_PRESCALER_CLOCK_2,
 	LPTIMER_PRESCALER_CLOCK_3
 }eLPTimerClockSelect;
-
+//! Event flag
 typedef enum
 {
 	LPTIMER_COUNTER_MATCH_STATUS = 0
 }eLPTimerStatus;
-
+//! Event flag mask
 typedef enum
 {
 	LPTIMER_COUNTER_MATCH_MASK_STATUS = (1 << LPTIMER_COUNTER_MATCH_STATUS)
@@ -61,10 +62,11 @@ typedef enum
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                Function-like Macros Section                                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//! Set asks for the timer event
 #define LPTIMER_CHECK_STATUS(status)	(LPTimer_gbStatus & status)
-
+//! Clear the timer event
 #define LPTIMER_CLEAR_STATUS(status)	(LPTimer_gbStatus &= ~status)
-
+//! Set the timer event
 #define LPTIMER_SET_STATUS(status)	(LPTimer_gbStatus |= status)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                  Extern Constants Section                                     
@@ -73,6 +75,7 @@ typedef enum
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                  Extern Variables Section                                     
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//! Timer events
 extern volatile uint8_t LPTimer_gbStatus;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                Function Prototypes Section                                    
@@ -81,7 +84,21 @@ extern volatile uint8_t LPTimer_gbStatus;
 #if defined(__cplusplus)
 extern "C" {
 #endif // __cplusplus
-
+/*!
+ *	@brief	Initialize the HW LPTimer
+ * 
+ *	@param	bPrescaler		[in]	Prescaler configuration, dependent of the user calculations. \
+ *									From eLPTimerPresacaler enum
+ *	
+ *	@param  bClockSource	[in]	Clock source to be used. Refer to the HW manual for further \
+ *									details. From eLPTimerClockSelect enum
+ *	
+ *	@param	dwCompareValue	[in]	Timer modulo. Calculated by the user. Directly dependent of \
+ *									the clock source and prescaler
+ * 	
+ * 	@return	void							
+ *	
+*/
 void LPTimer_Init(uint8_t bPrescaler,uint8_t bClockSource, uint32_t dwCompareValue);
 
 void LPTimer_EnableTimer (void);
