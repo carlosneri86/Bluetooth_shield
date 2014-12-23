@@ -16,13 +16,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                  Defines & Macros Section                                     
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+//! GPIO number to be used
 #define HEARTBEAT_PIN			(19)
-
+//! Heart bit mask based on GPIO number
 #define HEARTBEAT_MASK			(1<<HEARTBEAT_PIN)
-
+//! Port to be written
 #define HEARTBEAT_TOGGLE_PORT	(GPIOB_PTOR)
-
+//! Timeout on milliseconds for each toggle
 #define HEARTBEAT_TIMEOUT		(5000)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                      Typedef Section                                          
@@ -47,7 +47,12 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif // __cplusplus
-
+/*!
+ *	@brief	Initializes the proper layers for the heart beat
+ * 	
+ * 	@return	void								
+ *	
+*/
 void Heartbeat_vfnInit(void);
 
 #if defined(__cplusplus)

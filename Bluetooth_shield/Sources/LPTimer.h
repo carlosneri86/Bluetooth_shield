@@ -100,7 +100,12 @@ extern "C" {
  *	
 */
 void LPTimer_Init(uint8_t bPrescaler,uint8_t bClockSource, uint32_t dwCompareValue);
-
+/*!
+ *	@brief	Starts the LPTimer
+ * 
+ * 	@return	void							
+ *	
+*/
 void LPTimer_EnableTimer (void);
 
 #if defined(__cplusplus)

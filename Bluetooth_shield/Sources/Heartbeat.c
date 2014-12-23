@@ -15,7 +15,7 @@
 //                                   Defines & Macros Section                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//! Time out in SW Timer units for the hearbeat
 #define HEARTBEAT_TIMER	(HEARTBEAT_TIMEOUT/SWTIMER_BASE_TIME)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ void Heartbeat_vfnTimerCallback(void);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Static Variables Section                   
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+//! holds the SW timer ID
 static uint8_t Heartbeat_Timer = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +57,7 @@ static uint8_t Heartbeat_Timer = 0;
 
 void Heartbeat_vfnInit(void)
 {
+	/* Request for a SW timer and start it */
 	Heartbeat_Timer = SWTimer_vfnAllocateChannel(HEARTBEAT_TIMER, Heartbeat_vfnTimerCallback);
 	
 	SWTimer_vfnEnableTimer(Heartbeat_Timer);
@@ -64,6 +65,7 @@ void Heartbeat_vfnInit(void)
 
 void Heartbeat_vfnTimerCallback(void)
 {
+	/* Toggle the heart beat pin each time the callback is called */
 	HEARTBEAT_TOGGLE_PORT = HEARTBEAT_MASK;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
