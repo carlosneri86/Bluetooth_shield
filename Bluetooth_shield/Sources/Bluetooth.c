@@ -284,7 +284,7 @@ void Bluetooth_vfnStateMachine(void)
 	/* start receiving data just after initialization */
 	if(BLUETOOTH_CHECK_INTERNAL_STATUS(BLUETOOTH_INIT_DONE))
 	{
-		if(UART_CHECK_STATUS(UART_RX_DONE))
+		if(UART_CHECK_STATUS(UART0_RX_DONE))
 		{			
 			Bluetooth_vfnProcessRxData();
 		}
@@ -301,9 +301,11 @@ static void Bluetooth_vfnIdleState(void)
 static void Bluetooth_vfnWaitUartState(void)
 {
 	/* Do nothing until all data is sent */
-	if(!UART_CHECK_STATUS(UART_TX_PROGRESS))
+	if(UART_CHECK_STATUS(UART0_TX_DONE))
 	{
 		Bluetooth_tStateMachine.bCurrentState = Bluetooth_tStateMachine.bNextState;
+		
+		UART_CLEAR_STATUS(UART0_TX_DONE);
 	}
 }
 
@@ -424,7 +426,7 @@ static void Bluetooth_vfnProcessRxData(void)
 	
 	uint8_t bRxData;
 	
-	bRxData = UART_bfnRxBuffer();
+	bRxData = UART_bfnRxBuffer(BLUETOOTH_UART);
 	/* Parse the received data */
 	/* first identify if it is a command by looking for the SOF */
 	/* the AT commands sends \r\n COMMAND \r\n					*/
