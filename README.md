@@ -8,10 +8,10 @@ This sample code showcases the Seeed Studio Bluetooth shield with Freescale FRDM
 
 [http://www.seeedstudio.com/wiki/Bluetooth_Shield]
 
-The sample code uses the following modules:
-	* UART: Used for communication with the Bluetooth module
-	* LPTimer: System tick, used to generate SW timers
-	* GPIO: For different modules
+The sample code uses the following modules:<br><br>
+	-	UART: Used for communication with the Bluetooth module<br>
+	-	LPTimer: System tick, used to generate SW timers<br>
+	-	GPIO: For different modules<br>
 	
 The bluetooth driver is written in a state machine fashion. Basically initializes the module and uses a status register to let know the application when data is received and when data has been transmitted. The driver handles connections and disconnections, a flag on the status register for connected devices.
 
